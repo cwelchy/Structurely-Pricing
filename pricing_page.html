@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structurely — Pricing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1c2541;
+            --blue: #325FA6;
+            --blue-light: #4a7bc8;
+            --gold: #f5a623;
+            --gold-light: #ffd54f;
+            --green: #10b981;
+            --indigo: #6366f1;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05), 0 10px 24px rgba(0,0,0,0.08);
+            --shadow-hover: 0 12px 28px rgba(0,0,0,0.12), 0 20px 44px rgba(0,0,0,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f0f2f5;
+            color: var(--navy);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── Hero ─── */
+        .hero {
+            background: linear-gradient(160deg, #0f1a2e 0%, #1c2541 40%, #274272 100%);
+            padding: 56px 24px 72px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%; right: -20%;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(50,95,166,0.25) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%; left: -10%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-section { margin-bottom: 48px; }
+        .logo-section svg { height: 36px; width: auto; }
+
+        .hero-content {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .hero-content p {
+            font-size: 19px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* ─── Toggle ─── */
+        .toggle-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 36px;
+        }
+
+        .toggle-label {
+            font-size: 15px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .toggle-label.active {
+            color: #fff;
+        }
+
+        .toggle-track {
+            width: 56px;
+            height: 30px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .toggle-track:hover { background: rgba(255,255,255,0.22); }
+
+        .toggle-thumb {
+            width: 24px; height: 24px;
+            background: var(--gold);
+            border-radius: 50%;
+            position: absolute;
+            top: 2px; left: 3px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(245,166,35,0.4);
+        }
+
+        .toggle-track.monthly .toggle-thumb {
+            transform: translateX(25px);
+        }
+
+        .save-badge {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gold);
+            background: rgba(245,166,35,0.15);
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+        }
+
+        /* ─── Pricing Cards ─── */
+        .pricing-section {
+            padding: 0 24px;
+            margin-top: -48px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: #fff;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--blue);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            background: var(--blue);
+            color: #fff;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 6px 0;
+        }
+
+        .card-header {
+            padding: 32px 28px 24px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .pricing-card.featured .card-header {
+            padding-top: 48px;
+        }
+
+        .card-tier {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 6px;
+        }
+
+        .card-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.5;
+            min-height: 42px;
+        }
+
+        .card-price-block {
+            margin-top: 20px;
+        }
+
+        .card-price {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1;
+        }
+
+        .card-price .period {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--gray-500);
+            margin-left: 2px;
+        }
+
+        .card-price-note {
+            font-size: 13px;
+            color: var(--gray-400);
+            margin-top: 6px;
+        }
+
+        .card-body {
+            padding: 24px 28px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-group-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--gray-400);
+            margin-bottom: 12px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--gray-700);
+            line-height: 1.45;
+        }
+
+        .feature-list li .check {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px; height: 18px;
+            background: var(--green);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 10px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .card-footer {
+            padding: 0 28px 28px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px 24px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+            color: var(--navy);
+            box-shadow: 0 4px 14px rgba(245,166,35,0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245,166,35,0.4);
+        }
+
+        .btn-blue {
+            background: linear-gradient(135deg, var(--blue) 0%, #274272 100%);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(50,95,166,0.3);
+        }
+
+        .btn-blue:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(50,95,166,0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--navy);
+            border: 2px solid var(--gray-200);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+            transform: translateY(-2px);
+        }
+
+        /* ─── Action Credits Explainer ─── */
+        .section {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .credits-section {
+            margin-top: 56px;
+        }
+
+        .credits-card {
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 44px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .credits-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: linear-gradient(to bottom, var(--blue), var(--indigo));
+        }
+
+        .credits-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .credits-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--blue) 0%, var(--indigo) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .credits-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .credits-subtitle {
+            font-size: 16px;
+            color: var(--gray-500);
+            line-height: 1.6;
+            margin-bottom: 28px;
+            max-width: 700px;
+        }
+
+        .credits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .credit-item {
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            padding: 24px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: border-color 0.3s;
+        }
+
+        .credit-item:hover { border-color: var(--blue); }
+
+        .credit-item .icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .credit-item .equiv {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .credit-item .label {
+            font-size: 14px;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+
+        .credit-item .note {
+            font-size: 12px;
+            color: var(--gray-400);
+            margin-top: 6px;
+        }
+
+        /* ─── Onboarding Section ─── */
+        .onboarding-section {
+            margin-top: 56px;
+        }
+
+        .onboarding-card {
+            background: linear-gradient(160deg, #0f1a2e 0%, #1c2541 40%, #274272 100%);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 48px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .onboarding-card::before {
+            content: '';
+            position: absolute;
+            top: -30%; right: -10%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .onboarding-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 32px;
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .onboarding-top h2 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .onboarding-top p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.6;
+            max-width: 520px;
+        }
+
+        .onboarding-price {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .onboarding-price .amount {
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        .onboarding-price .note {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 4px;
+        }
+
+        .onboarding-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ob-feature {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+        }
+
+        .ob-feature .icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .ob-feature h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .ob-feature p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.5;
+        }
+
+        /* ─── Pilot ─── */
+        .pilot-section {
+            margin-top: 56px;
+        }
+
+        .pilot-card {
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 40px 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+            border-left: 4px solid var(--gold);
+        }
+
+        .pilot-content h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .pilot-content p {
+            font-size: 15px;
+            color: var(--gray-500);
+            line-height: 1.6;
+            max-width: 640px;
+        }
+
+        .pilot-cta {
+            flex-shrink: 0;
+        }
+
+        .pilot-cta .btn { white-space: nowrap; padding: 14px 32px; }
+
+        /* ─── Comparison Table ─── */
+        .comparison-section {
+            margin-top: 56px;
+        }
+
+        .comparison-section h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--navy);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .comparison-section > p {
+            text-align: center;
+            color: var(--gray-500);
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+
+        .comparison-table-wrapper {
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table thead th {
+            padding: 20px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--navy);
+            text-align: center;
+            border-bottom: 2px solid var(--gray-200);
+            background: var(--gray-50);
+        }
+
+        .comparison-table thead th:first-child {
+            text-align: left;
+            width: 28%;
+        }
+
+        .comparison-table thead th.featured-col {
+            background: rgba(50,95,166,0.06);
+        }
+
+        .comparison-table tbody td {
+            padding: 16px 20px;
+            font-size: 14px;
+            text-align: center;
+            border-bottom: 1px solid var(--gray-100);
+            color: var(--gray-700);
+        }
+
+        .comparison-table tbody td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .comparison-table tbody td.featured-col {
+            background: rgba(50,95,166,0.03);
+        }
+
+        .comparison-table tbody tr:last-child td { border-bottom: none; }
+
+        .table-check {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px; height: 22px;
+            background: var(--green);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .table-dash {
+            color: var(--gray-400);
+            font-size: 18px;
+        }
+
+        /* ─── FAQ ─── */
+        .faq-section {
+            margin-top: 56px;
+            padding-bottom: 80px;
+        }
+
+        .faq-section h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--navy);
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .faq-item {
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
+        }
+
+        .faq-item h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .faq-item p {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.7;
+        }
+
+        .faq-item strong {
+            color: var(--gray-700);
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 1080px) {
+            .pricing-cards { grid-template-columns: repeat(2, 1fr); }
+            .onboarding-features { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 40px 20px 60px; }
+            .pricing-cards { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+            .credits-grid { grid-template-columns: 1fr; }
+            .credits-card { padding: 28px; }
+            .onboarding-card { padding: 28px; }
+            .onboarding-top { flex-direction: column; }
+            .onboarding-features { grid-template-columns: 1fr; }
+            .pilot-card { flex-direction: column; text-align: center; padding: 28px; }
+            .comparison-section h2 { font-size: 22px; }
+            .faq-grid { grid-template-columns: 1fr; }
+            .comparison-table { font-size: 13px; }
+            .comparison-table thead th, .comparison-table tbody td { padding: 12px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── Hero ─── -->
+    <div class="hero">
+        <div class="container">
+            <div class="logo-section">
+                <svg width="1276" height="333" viewBox="0 0 1276 333" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 88.009C0 39.403 39.403 0 88.0093 0H273.953C273.953 48.6061 234.55 88.009 185.944 88.009H0Z" fill="#4a7bc8"/>
+<path d="M0.144775 122.612C0.144775 171.218 39.5478 210.621 88.1541 210.621H274.098C274.098 162.015 234.695 122.612 186.089 122.612H0.144775Z" fill="#4a7bc8"/>
+<path d="M0 332.987C0 284.381 39.403 244.978 88.0092 244.978H273.953C273.953 293.584 234.55 332.987 185.944 332.987H0Z" fill="#4a7bc8"/>
+<path d="M380.812 189.608C392.815 196.848 409.201 200.468 418.728 200.468C427.112 200.468 431.494 197.42 431.494 191.513C431.494 185.226 426.349 183.13 419.3 180.844L414.155 178.938C400.437 174.746 380.05 168.268 380.05 141.213C380.05 114.157 400.056 104.058 428.255 104.058C440.639 104.058 453.024 105.964 463.694 109.203L461.979 139.688C450.547 134.163 434.542 131.495 427.302 131.495C419.109 131.495 415.108 134.734 415.108 140.26C415.108 145.785 419.49 148.453 426.54 150.739L434.352 153.216C447.689 157.217 468.457 163.505 468.457 189.989C468.457 214.568 450.547 227.905 420.062 227.905C406.915 227.905 392.053 225.238 378.907 220.093L380.812 189.608ZM534.692 224.285C528.785 226.381 520.211 227.905 511.828 227.905C489.154 227.905 476.388 217.045 476.388 195.896V158.17H464.385V135.115C477.532 132.448 484.962 124.064 486.677 110.727H510.684V130.733H534.692V158.17H510.684V188.084C510.684 196.086 514.305 199.516 522.688 199.516C526.118 199.516 531.262 198.754 534.692 197.801V224.285ZM540.991 226V130.733H573.382V151.311C577.193 136.83 588.053 128.828 606.725 128.828V164.648H597.77C587.291 164.648 578.907 168.649 575.287 176.08V226H540.991ZM611.283 194.943V130.733H645.579V184.845C645.579 193.99 649.39 198.373 657.011 198.373C662.537 198.373 667.491 195.515 670.73 192.276V130.733H705.026V226H677.589L674.731 214.187C668.634 221.999 655.868 227.905 642.531 227.905C623.477 227.905 611.283 214.949 611.283 194.943ZM710.88 178.176C710.88 145.595 731.267 128.828 762.134 128.828C771.851 128.828 781.378 130.543 788.427 133.02L785.76 163.505C781.187 160.647 773.566 157.789 765.944 157.789C753.75 157.789 746.129 164.839 746.129 178.748C746.129 192.466 753.179 199.325 767.088 199.325C772.232 199.325 782.902 198.373 788.999 196.658L786.522 224.285C781.187 226.191 770.708 227.905 761.562 227.905C731.077 227.905 710.88 210.567 710.88 178.176ZM863.645 224.285C857.738 226.381 849.164 227.905 840.781 227.905C818.107 227.905 805.342 217.045 805.342 195.896V158.17H793.338V135.115C806.485 132.448 813.916 124.064 815.631 110.727H839.638V130.733H863.645V158.17H839.638V188.084C839.638 196.086 843.258 199.516 851.641 199.516C855.071 199.516 860.215 198.754 863.645 197.801V224.285ZM868.451 194.943V130.733H902.748V184.845C902.748 193.99 906.558 198.373 914.18 198.373C919.705 198.373 924.659 195.515 927.898 192.276V130.733H962.194V226H934.757L931.899 214.187C925.802 221.999 913.036 227.905 899.699 227.905C880.646 227.905 868.451 214.949 868.451 194.943ZM972.431 226V130.733H1004.82V151.311C1008.63 136.83 1019.49 128.828 1038.16 128.828V164.648H1029.21C1018.73 164.648 1010.35 168.649 1006.73 176.08V226H972.431ZM1089.85 227.905C1055.36 227.905 1035.93 209.995 1035.93 178.176C1035.93 145.785 1056.12 128.828 1085.85 128.828C1115 128.828 1129.86 144.833 1129.86 169.412C1129.86 175.699 1128.91 181.606 1127.57 185.988H1068.89C1070.22 193.609 1077.08 202.755 1097.28 202.755C1106.8 202.755 1119.19 201.04 1126.81 198.754L1124.52 222.951C1115.95 225.619 1102.23 227.905 1089.85 227.905ZM1068.51 168.84H1100.52V166.744C1100.52 156.265 1095.75 149.787 1085.66 149.787C1074.99 149.787 1068.7 156.646 1068.51 168.84ZM1135.53 199.325V98.3425H1169.83V193.038C1169.83 197.42 1171.93 199.516 1176.12 199.516C1177.64 199.516 1180.5 199.135 1183.17 198.373L1183.74 225.047C1177.83 226.762 1170.97 227.905 1164.88 227.905C1145.82 227.905 1135.53 217.235 1135.53 199.325ZM1180.23 225.428C1186.52 227.524 1194.52 229.239 1201.57 229.239C1214.34 229.239 1223.29 224.095 1227.86 216.092H1197.95C1189.38 190.18 1180.99 147.691 1179.28 130.733H1213.77C1215.29 147.5 1221.58 184.083 1225.58 198.182H1227.1C1231.1 184.083 1237.39 147.5 1238.92 130.733H1271.69C1269.78 152.263 1260.45 195.134 1252.63 215.521C1243.49 241.243 1229.77 256.485 1202.52 256.485C1193.76 256.485 1183.66 254.961 1177.95 252.484L1180.23 225.428Z" fill="white"/>
+</svg>
+            </div>
+
+            <div class="hero-content">
+                <h1 style="font-size: 42px; font-weight: 700; color: #fff; margin-bottom: 16px; line-height: 1.2;">Your leads aren't going cold.<br>They're being ignored.</h1>
+                <p>Work gets done. You only pay when it does.</p>
+
+                <div class="toggle-wrapper">
+                    <span class="toggle-label active" id="label-annual">Annual</span>
+                    <div class="toggle-track" id="toggleTrack">
+                        <div class="toggle-thumb"></div>
+                    </div>
+                    <span class="toggle-label" id="label-monthly">Monthly</span>
+                    <span class="save-badge">Save 20% annually</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── Pricing Cards ─── -->
+    <div class="pricing-section">
+        <div class="pricing-cards">
+
+            <!-- Starter -->
+            <div class="pricing-card">
+                <div class="card-header">
+                    <div class="card-tier">Starter</div>
+                    <div class="card-desc">For independent brokers, LOs, and small teams looking to automate pipeline follow-up</div>
+                    <div class="card-price-block">
+                        <div class="card-price" data-annual="2499" data-monthly="2999">$2,499<span class="period">/mo</span></div>
+                        <div class="card-price-note price-note-toggle">Billed annually</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="feature-group-label">What's included</div>
+                    <ul class="feature-list">
+                        <li><span class="check">✓</span> 20,000 Action Credits / mo</li>
+                        <li><span class="check">✓</span> $0.10 per credit overage</li>
+                        <li><span class="check">✓</span> Pre-built mortgage agent</li>
+                        <li><span class="check">✓</span> SMS, email &amp; voice channels</li>
+                        <li><span class="check">✓</span> Salesforce integration</li>
+                        <li><span class="check">✓</span> Dedicated AM for 60 days</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-gold get-started-cta">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Growth -->
+            <div class="pricing-card featured">
+                <div class="featured-badge">Most Popular</div>
+                <div class="card-header">
+                    <div class="card-tier">Growth</div>
+                    <div class="card-desc">For brokers processing 10–20k leads/mo who need scale without more headcount</div>
+                    <div class="card-price-block">
+                        <div class="card-price" data-annual="4999" data-monthly="5999">$4,999<span class="period">/mo</span></div>
+                        <div class="card-price-note price-note-toggle">Billed annually</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="feature-group-label">Everything in Starter, plus</div>
+                    <ul class="feature-list">
+                        <li><span class="check">✓</span> 60,000 Action Credits / mo</li>
+                        <li><span class="check">✓</span> $0.09 per credit overage</li>
+                        <li><span class="check">✓</span> Multi-agent workflows</li>
+                        <li><span class="check">✓</span> Advanced campaign management</li>
+                        <li><span class="check">✓</span> Priority support</li>
+                        <li><span class="check">✓</span> Live transfer optimization</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-blue get-started-cta">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Scale -->
+            <div class="pricing-card">
+                <div class="card-header">
+                    <div class="card-tier">Scale</div>
+                    <div class="card-desc">For high-volume brokers processing 50k+ leads/mo with systems built to convert — matched to their pace</div>
+                    <div class="card-price-block">
+                        <div class="card-price" data-annual="8999" data-monthly="10799">$8,999<span class="period">/mo</span></div>
+                        <div class="card-price-note price-note-toggle">Billed annually</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="feature-group-label">Everything in Growth, plus</div>
+                    <ul class="feature-list">
+                        <li><span class="check">✓</span> 120,000 Action Credits / mo</li>
+                        <li><span class="check">✓</span> $0.08 per credit overage</li>
+                        <li><span class="check">✓</span> Custom agent configurations</li>
+                        <li><span class="check">✓</span> Advanced analytics &amp; reporting</li>
+                        <li><span class="check">✓</span> Dedicated success manager</li>
+                        <li><span class="check">✓</span> Volume overage discounts</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-gold get-started-cta">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="pricing-card">
+                <div class="card-header">
+                    <div class="card-tier">Enterprise</div>
+                    <div class="card-desc">For organizations processing 100k+ leads/mo ready to build a fully custom AI sales operation and competitive moat</div>
+                    <div class="card-price-block">
+                        <div class="card-price">Custom</div>
+                        <div class="card-price-note">Tailored to your operation</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="feature-group-label">Everything in Scale, plus</div>
+                    <ul class="feature-list">
+                        <li><span class="check">✓</span> Unlimited Action Credits</li>
+                        <li><span class="check">✓</span> Custom AI agents built for you</li>
+                        <li><span class="check">✓</span> Custom voice &amp; personality</li>
+                        <li><span class="check">✓</span> Dedicated AI training team</li>
+                        <li><span class="check">✓</span> Fine-tuned LLM for your playbook</li>
+                        <li><span class="check">✓</span> Full market differentiation build</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-outline" id="enterprise-cta">Contact Sales</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ─── Action Credits Explainer ─── -->
+    <div class="section credits-section">
+        <div class="credits-card">
+            <div class="credits-header">
+                <div class="credits-icon">⚡</div>
+                <h2>What is an Action Credit?</h2>
+            </div>
+            <p class="credits-subtitle">An Action Credit is a unit of AI labor. Every time Structurely works on your behalf — chasing documents, following up with a lead, or prequalifying a borrower — it spends Action Credits. Think of it like paying a team member per task completed, not per hour logged.</p>
+            <div class="credits-grid">
+                <div class="credit-item">
+                    <div class="icon">💬</div>
+                    <div class="equiv">1 Credit</div>
+                    <div class="label">1 SMS response</div>
+                </div>
+                <div class="credit-item">
+                    <div class="icon">📞</div>
+                    <div class="equiv">1 Credit</div>
+                    <div class="label">10 seconds of talk time</div>
+                </div>
+                <div class="credit-item">
+                    <div class="icon">✉️</div>
+                    <div class="equiv">1 Credit</div>
+                    <div class="label">2 emails</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── Onboarding ─── -->
+    <div class="section onboarding-section">
+        <div class="onboarding-card">
+            <div class="onboarding-top">
+                <div>
+                    <h2>Onboarding That Sets You Up to Win</h2>
+                    <p>Your onboarding fee isn't a setup cost — it's the foundation of your AI sales operation. We build your system, connect your tools, and pair you with a dedicated Account Manager who stays with you for the first 60 days.</p>
+                </div>
+                <div class="onboarding-price">
+                    <div class="amount">$2,500</div>
+                    <div class="note">One-time per account</div>
+                </div>
+            </div>
+            <div class="onboarding-features">
+                <div class="ob-feature">
+                    <div class="icon">🔗</div>
+                    <h4>Salesforce Integration</h4>
+                    <p>Full CRM integration so your AI workforce operates inside your existing systems from day one.</p>
+                </div>
+                <div class="ob-feature">
+                    <div class="icon">🏠</div>
+                    <h4>Mortgage Agent — Ready to Go</h4>
+                    <p>Out-of-the-box agent trained on VA, Conventional, FHA, HELOC, Purchase, and Refinance conversations.</p>
+                </div>
+                <div class="ob-feature">
+                    <div class="icon">🤝</div>
+                    <h4>60-Day Dedicated AM</h4>
+                    <p>A named Account Manager to fine-tune campaigns, optimize transfers, and make sure you see ROI fast.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── Pilot ─── -->
+    <div class="section pilot-section">
+        <div class="pilot-card">
+            <div class="pilot-content">
+                <h2>Not ready to commit? Start with a Pilot.</h2>
+                <p>All plans include a pilot period to prove unit economics before you commit to an annual contract. See real transfer rates, real ROI, and real results with your leads before signing long-term.</p>
+            </div>
+            <div class="pilot-cta">
+                <a href="#" class="btn btn-blue" id="pilot-cta">Talk to Sales</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── Comparison Table ─── -->
+    <div class="section comparison-section">
+        <h2>Compare Plans</h2>
+        <p>Turn your pipeline into closed loans — without hiring</p>
+        <div class="comparison-table-wrapper">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Starter</th>
+                        <th class="featured-col">Growth</th>
+                        <th>Scale</th>
+                        <th>Enterprise</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Action Credits / mo</td>
+                        <td>20,000</td>
+                        <td class="featured-col">60,000</td>
+                        <td>120,000</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>Overage Rate</td>
+                        <td>$0.10</td>
+                        <td class="featured-col">$0.09</td>
+                        <td>$0.08</td>
+                        <td>Custom</td>
+                    </tr>
+                    <tr>
+                        <td>SMS, Email &amp; Voice</td>
+                        <td><span class="table-check">✓</span></td>
+                        <td class="featured-col"><span class="table-check">✓</span></td>
+                        <td><span class="table-check">✓</span></td>
+                        <td><span class="table-check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Pre-built Mortgage Agent</td>
+                        <td><span class="table-check">✓</span></td>
+                        <td class="featured-col"><span class="table-check">✓</span></td>
+                        <td><span class="table-check">✓</span></td>
+                        <td><span class="table-check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Salesforce Integration</td>
+                        <td><span class="table-check">✓</span></td>
+                        <td class="featured-col"><span class="table-check">✓</span></td>
+                        <td><span class="table-check">✓</span></td>
+                        <td><span class="table-check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Multi-agent Workflows</td>
+                        <td><span class="table-dash">—</span></td>
+                        <td class="featured-col"><span class="table-check">✓</span></td>
+                        <td><span class="table-check">✓</span></td>
+                        <td><span class="table-check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Advanced Campaign Management</td>
+                        <td><span class="table-dash">—</span></td>
+                        <td class="featured-col"><span class="table-check">✓</span></td>
+                        <td><span class="table-check">✓</span></td>
+                        <td><span class="table-check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Custom Agent Configurations</td>
+                        <td><span class="table-dash">—</span></td>
+                        <td class="featured-col"><span class="table-dash">—</span></td>
+                        <td><span class="table-check">✓</span></td>
+                        <td><span class="table-check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Dedicated Success Manager</td>
+                        <td><span class="table-dash">—</span></td>
+                        <td class="featured-col"><span class="table-dash">—</span></td>
+                        <td><span class="table-check">✓</span></td>
+                        <td><span class="table-check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Custom AI Agents &amp; Voices</td>
+                        <td><span class="table-dash">—</span></td>
+                        <td class="featured-col"><span class="table-dash">—</span></td>
+                        <td><span class="table-dash">—</span></td>
+                        <td><span class="table-check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Fine-tuned LLM</td>
+                        <td><span class="table-dash">—</span></td>
+                        <td class="featured-col"><span class="table-dash">—</span></td>
+                        <td><span class="table-dash">—</span></td>
+                        <td><span class="table-check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Dedicated AI Training Team</td>
+                        <td><span class="table-dash">—</span></td>
+                        <td class="featured-col"><span class="table-dash">—</span></td>
+                        <td><span class="table-dash">—</span></td>
+                        <td><span class="table-check">✓</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ─── FAQ ─── -->
+    <div class="section faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3>What ROI can I expect?</h3>
+                <p>ROI varies based on your sales ability, transfer handling, and lead source quality. On average, clients working <strong>higher-quality leads</strong> (LendingTree, NerdWallet, etc.) see <strong>15–20x+ ROI</strong>. For <strong>lower-quality leads</strong> like credit triggers and data leads, clients average <strong>3x+ ROI</strong>. The key variable is your team's ability to close transfers — Structurely gets the conversation started and delivers live transfers to your LOs.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What are typical transfer rates?</h3>
+                <p>Transfer rates depend on lead type and speed to lead. For <strong>warm leads</strong> (LendingTree, NerdWallet, and similar buy sources), clients see <strong>5–30% live transfer rates</strong>. For <strong>cold leads</strong> (credit triggers, data leads), transfer rates average <strong>0.5–3%</strong>. Your dedicated Account Manager works with you to fine-tune agents and optimize transfer rates over time.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What are the contract terms?</h3>
+                <p>All plans are <strong>annual contracts</strong> at the listed price. Month-to-month is available at a <strong>20% premium</strong>. Every plan includes a <strong>pilot period</strong> to prove unit economics with your actual leads before you commit long-term — so you see real results before signing.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What's included in onboarding?</h3>
+                <p>The $2,500 one-time onboarding fee includes <strong>full Salesforce integration</strong>, a production-ready mortgage agent trained on VA, Conventional, FHA, HELOC, Purchase, and Refinance products, and a <strong>dedicated Account Manager for 60 days</strong> to help you optimize campaigns and hit your ROI targets.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What is an Action Credit?</h3>
+                <p>An Action Credit is a unit of AI labor. <strong>1 credit = 1 SMS, 10 seconds of talk time, or 2 emails.</strong> Credits are consumed as your AI agents work — following up with leads, chasing documents, prequalifying borrowers, and more. You only pay for actual work performed.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How does Structurely ensure success?</h3>
+                <p>Every account includes a <strong>dedicated Account Manager</strong> during onboarding who helps fine-tune your agents, dial in campaigns, and optimize transfer rates. Structurely's success is specific to your ability to fine-tune and iterate — and we provide hands-on guidance to make sure that happens.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── Spam Mitigation Add-on ─── -->
+    <div class="section" style="padding-bottom: 80px;">
+        <div class="credits-card" style="display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
+            <div>
+                <div class="credits-header" style="margin-bottom: 8px;">
+                    <div class="credits-icon">🛡️</div>
+                    <h2>Spam Mitigation Service</h2>
+                </div>
+                <p class="credits-subtitle" style="margin-bottom: 0;">Nationwide spam-mitigated, local area code phone numbers to maximize pickup rates and protect your caller reputation.</p>
+            </div>
+            <div style="text-align: right; flex-shrink: 0;">
+                <div style="font-size: 36px; font-weight: 700; color: var(--navy);">$8<span style="font-size: 15px; font-weight: 500; color: var(--gray-500);">/number/mo</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            var isAnnual = true;
+            var track = document.getElementById('toggleTrack');
+            var labelAnnual = document.getElementById('label-annual');
+            var labelMonthly = document.getElementById('label-monthly');
+
+            function formatPrice(num) {
+                return '$' + num.toLocaleString();
+            }
+
+            function updatePrices() {
+                var priceEls = document.querySelectorAll('.card-price[data-annual]');
+                var noteEls = document.querySelectorAll('.price-note-toggle');
+
+                for (var i = 0; i < priceEls.length; i++) {
+                    var el = priceEls[i];
+                    var annual = parseInt(el.getAttribute('data-annual'));
+                    var monthly = parseInt(el.getAttribute('data-monthly'));
+                    var price = isAnnual ? annual : monthly;
+                    el.innerHTML = formatPrice(price) + '<span class="period">/mo</span>';
+                }
+
+                for (var j = 0; j < noteEls.length; j++) {
+                    noteEls[j].textContent = isAnnual ? 'Billed annually' : 'Billed monthly';
+                }
+
+                if (isAnnual) {
+                    labelAnnual.className = 'toggle-label active';
+                    labelMonthly.className = 'toggle-label';
+                    track.className = 'toggle-track';
+                } else {
+                    labelAnnual.className = 'toggle-label';
+                    labelMonthly.className = 'toggle-label active';
+                    track.className = 'toggle-track monthly';
+                }
+            }
+
+            track.addEventListener('click', function() {
+                isAnnual = !isAnnual;
+                updatePrices();
+            });
+
+            labelAnnual.addEventListener('click', function() {
+                isAnnual = true;
+                updatePrices();
+            });
+
+            labelMonthly.addEventListener('click', function() {
+                isAnnual = false;
+                updatePrices();
+            });
+
+            var salesEmail = 'sales' + '@' + 'structurely.com';
+            var maxEmail = 'max' + '@' + 'structurely.com';
+            var entCta = document.getElementById('enterprise-cta');
+            var pilotCta = document.getElementById('pilot-cta');
+            var getStartedBtns = document.querySelectorAll('.get-started-cta');
+
+            for (var k = 0; k < getStartedBtns.length; k++) {
+                getStartedBtns[k].addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = 'mai' + 'lto:' + maxEmail;
+                });
+            }
+            if (entCta) {
+                entCta.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = 'mai' + 'lto:' + salesEmail;
+                });
+            }
+            if (pilotCta) {
+                pilotCta.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = 'mai' + 'lto:' + salesEmail;
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
