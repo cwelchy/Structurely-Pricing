@@ -350,6 +350,213 @@
             transform: translateY(-2px);
         }
 
+        /* ─── AI Power Dialer ─── */
+        .dialer-section {
+            margin-top: 56px;
+        }
+
+        .dialer-card {
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .dialer-content {
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .dialer-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #fff;
+            background: linear-gradient(135deg, var(--gold) 0%, #e8950a 100%);
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .dialer-content h2 {
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .dialer-content > p {
+            font-size: 16px;
+            color: var(--gray-500);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .dialer-features {
+            list-style: none;
+            margin-bottom: 28px;
+        }
+
+        .dialer-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 6px 0;
+            font-size: 14px;
+            color: var(--gray-700);
+            line-height: 1.5;
+        }
+
+        .dialer-features li .check {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px; height: 18px;
+            background: var(--green);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 10px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .dialer-pricing {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .dialer-price-item {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            padding: 16px 20px;
+            flex: 1;
+            min-width: 160px;
+        }
+
+        .dialer-price-item .amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .dialer-price-item .amount span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-500);
+        }
+
+        .dialer-price-item .desc {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+
+        .dialer-visual {
+            background: linear-gradient(160deg, #0f1a2e 0%, #1c2541 40%, #274272 100%);
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dialer-visual::before {
+            content: '';
+            position: absolute;
+            top: -30%; right: -20%;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(245,166,35,0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .dialer-toggle-demo {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dialer-toggle-demo .mode-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.5);
+            transition: color 0.3s;
+        }
+
+        .dialer-toggle-demo .mode-label.active {
+            color: #fff;
+        }
+
+        .dialer-toggle-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .dialer-switch {
+            width: 72px;
+            height: 38px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 19px;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: background 0.3s;
+        }
+
+        .dialer-switch.ai-on {
+            background: rgba(245,166,35,0.3);
+            border-color: var(--gold);
+        }
+
+        .dialer-switch-thumb {
+            width: 30px; height: 30px;
+            background: var(--gold);
+            border-radius: 50%;
+            position: absolute;
+            top: 3px; left: 4px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(245,166,35,0.4);
+        }
+
+        .dialer-switch.ai-on .dialer-switch-thumb {
+            transform: translateX(33px);
+        }
+
+        .dialer-visual-caption {
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 24px;
+            transition: opacity 0.3s;
+        }
+
+        .dialer-visual-sub {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .dialer-card { grid-template-columns: 1fr; }
+            .dialer-content { padding: 28px; }
+            .dialer-visual { padding: 36px 28px; }
+        }
+
         /* ─── Action Credits Explainer ─── */
         .section {
             max-width: 1240px;
@@ -881,6 +1088,47 @@
         </div>
     </div>
 
+    <!-- ─── AI Power Dialer ─── -->
+    <div class="section dialer-section">
+        <div class="dialer-card">
+            <div class="dialer-content">
+                <div class="dialer-badge">Beta — Salesforce Add-on</div>
+                <h2>AI Power Dialer</h2>
+                <p>You don't have to replace your dialer — unless you want to. Create a list, flip the switch, and let AI start dialing. Toggle back to human mode anytime. Dial thousands of leads at once, integrated seamlessly into Salesforce.</p>
+                <ul class="dialer-features">
+                    <li><span class="check">✓</span> Toggle between AI mode and human mode per campaign</li>
+                    <li><span class="check">✓</span> Dial thousands of leads simultaneously in AI mode</li>
+                    <li><span class="check">✓</span> Native Salesforce integration — lives inside your CRM</li>
+                    <li><span class="check">✓</span> AI handles the conversation, transfers live to your LOs</li>
+                    <li><span class="check">✓</span> Works alongside your existing dialer setup</li>
+                </ul>
+                <div class="dialer-pricing">
+                    <div class="dialer-price-item">
+                        <div class="amount">$999<span>/mo</span></div>
+                        <div class="desc">AI Power Dialer</div>
+                    </div>
+                    <div class="dialer-price-item">
+                        <div class="amount">$199<span>/mo</span></div>
+                        <div class="desc">Each additional seat</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dialer-visual">
+                <div class="dialer-toggle-demo">
+                    <div class="dialer-toggle-visual">
+                        <span class="mode-label active" id="human-label">Human</span>
+                        <div class="dialer-switch" id="dialerSwitch">
+                            <div class="dialer-switch-thumb"></div>
+                        </div>
+                        <span class="mode-label" id="ai-label">AI</span>
+                    </div>
+                    <div class="dialer-visual-caption" id="dialerCaption">Human Mode</div>
+                    <div class="dialer-visual-sub" id="dialerSub">Your LOs dial manually from a list</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ─── Action Credits Explainer ─── -->
     <div class="section credits-section">
         <div class="credits-card">
@@ -1182,6 +1430,31 @@
                 pilotCta.addEventListener('click', function(e) {
                     e.preventDefault();
                     window.location.href = 'mai' + 'lto:' + salesEmail;
+                });
+            }
+            var dialerSwitch = document.getElementById('dialerSwitch');
+            var humanLabel = document.getElementById('human-label');
+            var aiLabel = document.getElementById('ai-label');
+            var dialerCaption = document.getElementById('dialerCaption');
+            var dialerSub = document.getElementById('dialerSub');
+            var isAiMode = false;
+
+            if (dialerSwitch) {
+                dialerSwitch.addEventListener('click', function() {
+                    isAiMode = !isAiMode;
+                    if (isAiMode) {
+                        dialerSwitch.className = 'dialer-switch ai-on';
+                        humanLabel.className = 'mode-label';
+                        aiLabel.className = 'mode-label active';
+                        dialerCaption.textContent = 'AI Mode';
+                        dialerSub.textContent = 'AI dials thousands of leads at once';
+                    } else {
+                        dialerSwitch.className = 'dialer-switch';
+                        humanLabel.className = 'mode-label active';
+                        aiLabel.className = 'mode-label';
+                        dialerCaption.textContent = 'Human Mode';
+                        dialerSub.textContent = 'Your LOs dial manually from a list';
+                    }
                 });
             }
         })();
